@@ -1,5 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
+import Cabecalho from "./components/Cabecalho.vue"
+import Formulario from "./components/Formulario.vue"
 
   const estado = reactive({
     numeroUm: 0,
@@ -62,44 +64,14 @@ import { reactive } from 'vue';
 </script>
 
 <template>
-  <div class="container p-3 w-50 bg-info rounded">
-    <header class="p-5 mb-4 mt-2 bg-success rounded">
-      <h1>Calculadora</h1>
-      <p>
-        Digite 2 (dois) números e escolha a operação que deseja realizar entre eles:
-      </p>
-    </header>  
-    <form @submit.prevent="limpaFormulario">
-      <div class="row d-flex justify-content-between">
-        <div class="col-md-5">
-          <select id="" class="form-control border border-success " @change="evento => estado.filtro = evento.target.value">
-            <option value="todas">Escolha a Operação Desejada</option>
-            <option value="adicao">Adição</option>
-            <option value="subtracao">Subtração</option>
-            <option value="multiplicacao">Multiplicação</option>
-            <option value="divisao">Divisão</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <input required @keyup="capturaNumeroUm" type="number" placeholder="1º número" class="form-control border border-success">
-        </div>
-        <div class="col-md-3">
-          <input required @keyup="capturaNumeroDois" type="number" placeholder="2º número" class="form-control border border-success">
-        </div>
-      </div>      
-      <div class="row mt-4">
-        <div class="col-md-2" >
-          <label class="fw-bold" for="resultado">Resultado:</label>
-        </div>
-        <div class="col-md-3">
-          <input :value="estado.resultado" type="number" class="form-control border border-success">
-        </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-primary">Limpar</button>
-        </div>
-      </div>
-    </form>
+  <div class="container mt-4 p-3 w-50 container-bg rounded">
+    <Cabecalho />
+    <Formulario :limpa-formulario="limpaFormulario" :altera-filtro="evento => estado.filtro = evento.target.value" 
+      :captura-numero-um="capturaNumeroUm" :captura-numero-dois="capturaNumeroDois" :resultado="estado.resultado"/>
   </div>
 </template>
 <style scoped>
+  .container-bg {
+    background-color: blanchedalmond;
+  }
 </style>
